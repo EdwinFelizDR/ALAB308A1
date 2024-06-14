@@ -9,19 +9,23 @@ try{
     }
 
 catch(err){
-   // console.err("This is the error", err);
-    console.log("counter value error", globalCounter);
+    // console.err("This is the error", err);
+    // console.log("counter value error", globalCounter);
 }
 
 // take an array as input and returns a flattened version of it.
 function flattenArray(arr) {
    let flattened = []; //initializes an empty array `flattened`
+
     //iterate all over all elements in the input array
    arr.forEach(item => {
-       if (Array.isArray(item)) { //is the element an array
-           flattened.push(...flattenArray(item)); //if the elements is an array calls `flattenArray`
+    //is the element an array
+       if (Array.isArray(item)) { 
+        //if the elements is an array calls `flattenArray`
+           flattened.push(...flattenArray(item)); 
        } else {
-           flattened.push(item); //push a single element if not an array
+        //push a single element if not an array
+           flattened.push(item); 
        }
    });
 
@@ -36,7 +40,7 @@ function flattenArray(arr) {
 // maintaining the declarative approach provided by
 // recursive functions.
 
-const trampoline = (fn,...args) => {
+const trampoline = fn => (...args) => {
    let result = fn(...args);
    while (typeof result === 'function'){
       result = result()
